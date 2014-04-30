@@ -1,7 +1,7 @@
 {
-  "name": "Daedalus Chat",
+  "name": "Daedalus-Chat",
   "version": "0.1.0",
-  "description": "Badass Chat client",
+  "description": "Badass Chat Client",
   "main": "server.js",
   "dependencies": {
     "express": "~4.1.1",
@@ -13,6 +13,20 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-  "author": "Dewitt A Buckingham",
-  "license": "GPLv2"
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/DaJoker29/Daedalus-Chat.git"
+  },
+  "keywords": [
+    "node",
+    "chat",
+    "express",
+    "socketsio"
+  ],
+  "author": "The Captain",
+  "license": "GPLv2",
+  "bugs": {
+    "url": "https://github.com/DaJoker29/Daedalus-Chat/issues"
+  },
+  "homepage": "https://github.com/DaJoker29/Daedalus-Chat"
 }
