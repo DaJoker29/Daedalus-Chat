@@ -1,6 +1,6 @@
 {
   "name": "Daedalus Chat",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Badass Chat client",
   "main": "server.js",
   "dependencies": {
