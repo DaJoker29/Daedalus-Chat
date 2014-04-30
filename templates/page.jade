@@ -8,18 +8,21 @@ html
         script(src='/chat.js')
         script(src='/socket.io/socket.io.js')
     body
-        .container
-            .jumbotron
+        .jumbotron
+            .container
                 h1 zChat&nbsp;
                     small A Kickass Chat Client from Zero Daedalus
-                .form-group
-                    label Username
+                p#browserWarning.alert.alert-danger Quit using a shitty browser to save username
+                .input-group
+                    label.input-group-addon Username
                         span#current.text-muted
                     input#username.form-control(placeholder="Username")
-                button#update.btn.btn-info Update
-                p#browserWarning Quit using a shitty browser to save username
-            #content
+                    .input-group-btn
+                        button#update.btn.btn-warning Update
+        .container
+            #content.well
             #controls
-                .form-group
+                .input-group
                     input#field.form-control(placeholder="Type Message Here" type='text')
-                button#send.btn.btn-primary(type='button') Send
+                    .input-group-btn
+                        button#send.btn.btn-success(type='button') Send
