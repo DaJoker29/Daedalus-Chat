@@ -14,6 +14,7 @@ app.get('/', function(req,res) {
 
 app.use(express.static(__dirname + '/public'));
 var io = require('socket.io').listen(app.listen(port));
+io.set('transports', ['xhr-polling']);
 console.log('Listening on port ' + port);
 
 io.sockets.on('connection', function(socket) {

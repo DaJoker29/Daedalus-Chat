@@ -1,6 +1,6 @@
 $(document).ready(function () {
     var messages = [];
-    var socket = io.connect('http://localhost:7029');
+    var socket = io.connect('http://chat.zerodaedalus.com');
     var field = $('#field');
     var send = $('#send');
     var content = $('#content');
