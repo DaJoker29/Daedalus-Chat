@@ -1,7 +1,7 @@
 {
-  "name": "zChat",
+  "name": "Daedalus Chat",
   "version": "0.0.0",
-  "description": "",
+  "description": "Badass Chat client",
   "main": "server.js",
   "dependencies": {
     "express": "~4.1.1",
@@ -13,6 +13,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-  "author": "",
+  "author": "Dewitt A Buckingham",
   "license": "GPLv2"
 }

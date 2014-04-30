@@ -34,10 +34,18 @@ $(document).ready(function () {
         if(data.message.content) {
             $.each(data, function() {
                 content
+                    .append('<p></p>')
+                    .find('p:last-child')
+                    .addClass('message ' + data.message.user)
                     .append('<span></span>')
                     .find('span:last-child')
-                    .addClass('message ' + data.message.user)
-                    .text(data.message.user + ": " + data.message.content)
+                    .addClass('user')
+                    .text(data.message.user + ': ')
+                    .closest('.message')
+                    .append('<span></span>')
+                    .find('span:last-child')
+                    .addClass('content')
+                    .text(data.message.content)
             });
         }
         else {

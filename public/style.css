@@ -4,7 +4,12 @@
     overflow: auto;
 }
 
+#content .user {
+    font-weight: bold;
+}
+
 #content .message {
     float: left;
     clear: both;
+    padding: 0 20px;
 }
