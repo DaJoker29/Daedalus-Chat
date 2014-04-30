@@ -54,13 +54,12 @@ $(document).ready(function () {
     });
 
     function getUser() {
-        var name;
         if(typeof(Storage) !== "undefined") {
             warning.hide();
             if(localStorage.getItem('username'))
                 name = localStorage.getItem('username');
             else
-                name = "zd-" + Math.floor((Math.random() * 10000) + 1); 
+                name = generateUser();
         }
         else {
             warning.show();
@@ -68,9 +67,17 @@ $(document).ready(function () {
         return name;
     }
 
+    function generateUser() {
+        name = 'zd-' + Math.floor((Math.random() * 729) + 1);
+        return name;
+    }
+
     function setUser() {
         localStorage.setItem('username', username.val() );
-        user = username.val();
+        if(username.val() === '')
+            user = generateUser();
+        else
+            user = username.val();
         currentUser();
     }
 
