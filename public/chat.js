@@ -9,10 +9,14 @@ $(document).ready(function () {
     var user = getUser();
     var username = $('#username');
     var update = $('#update');
+    var id;
     
+    //Hide warning
+    warning.hide();
 
     //set username and display it on screen
     username.val(user);
+    emitName();
     currentUser();
 
     //event handlers
@@ -40,7 +44,7 @@ $(document).ready(function () {
                 content
                     .append('<p></p>')
                     .find('p:last-child')
-                    .addClass(classes + data.message.user)
+                    .addClass(classes + id)
                     .append('<span></span>')
                     .find('span:last-child')
                     .addClass('user')
@@ -57,13 +61,25 @@ $(document).ready(function () {
         }
     });
 
+    socket.on('join', function(data) {
+        id = data.client;
+        emitName();
+    });
+
+    socket.on('change', function(data) {
+        console.log(data);
+    });
+
+    function emitName() {
+        socket.emit('add', {username: user});
+    }
+
     function getUser() {
         if(typeof(Storage) !== "undefined") {
-            warning.hide();
             if(localStorage.getItem('username'))
                 name = localStorage.getItem('username');
             else
-                name = generateUser();
+                name = generateUsername();
         }
         else {
             warning.show();
@@ -71,18 +87,18 @@ $(document).ready(function () {
         return name;
     }
 
-    function generateUser() {
-        name = 'zd-' + Math.floor((Math.random() * 729) + 1);
-        return name;
-    }
-
     function setUser() {
         localStorage.setItem('username', username.val() );
         if(username.val() === '')
-            user = generateUser();
+            user = generateUsername();
         else
             user = username.val();
         currentUser();
+        emitName();
+    }
+
+    function generateUsername() {
+        return 'zd-' + Math.floor((Math.random() * 729) + 1);
     }
 
     function currentUser() {

@@ -19,7 +19,14 @@ console.log('Listening on port ' + port);
 
 io.sockets.on('connection', function(socket) {
     socket.emit('message', { message: { content: 'Welcome to ' + appName, user: appName }});
+    io.sockets.emit('join', {client: socket.id});
     socket.on('send', function(data) {
         io.sockets.emit('message', data);
     });
+});
+
+var usernames = [];
+io.sockets.on('add', function(data) {
+    usernames.push(data.username);
+    io.sockets.emit('change', { users: usernames });
 });
