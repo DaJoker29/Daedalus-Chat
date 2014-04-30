@@ -33,10 +33,14 @@ $(document).ready(function () {
     socket.on('message', function(data) {
         if(data.message.content) {
             $.each(data, function() {
+                if(data.message.user === 'zdChat')
+                    classes = 'message text-muted ';
+                else
+                    classes = 'message ';
                 content
                     .append('<p></p>')
                     .find('p:last-child')
-                    .addClass('message ' + data.message.user)
+                    .addClass(classes + data.message.user)
                     .append('<span></span>')
                     .find('span:last-child')
                     .addClass('user')
