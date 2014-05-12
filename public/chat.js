@@ -37,7 +37,7 @@ $(document).ready(function () {
     socket.on('message', function(data) {
         if(data.message.content) {
             $.each(data, function() {
-                if(data.message.user === 'zdChat')
+                if(data.message.user === 'Hermes')
                     classes = 'message text-muted ';
                 else
                     classes = 'message ';

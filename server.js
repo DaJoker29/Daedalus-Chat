@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 var port = 7029;
-var appName = "zdChat";
+var appName = "Hermes";
 
 
 app.set('views', __dirname + '/templates');
@@ -18,7 +18,7 @@ io.set('transports', ['xhr-polling']);
 console.log('Listening on port ' + port);
 
 io.sockets.on('connection', function(socket) {
-    socket.emit('message', { message: { content: 'Welcome to ' + appName, user: appName }});
+    socket.emit('message', { message: { content: "Welcome to the Zero Daedalus Chat service. Don't be a dick.", user: appName }});
     io.sockets.emit('join', {client: socket.id});
     socket.on('send', function(data) {
         io.sockets.emit('message', data);
