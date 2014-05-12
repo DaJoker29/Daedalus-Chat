@@ -1,6 +1,6 @@
 var express = require('express');
 var app = express();
-var port = 7029
+var port = 7029;
 var appName = "zdChat";
 
 
