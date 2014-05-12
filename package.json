@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/DaJoker29/Daedalus-Chat.git"
+    "url": "git://github.com/DaJoker29/Hermes.git"
   },
   "keywords": [
     "node",
@@ -26,7 +26,7 @@
   "author": "The Captain",
   "license": "GPLv2",
   "bugs": {
-    "url": "https://github.com/DaJoker29/Daedalus-Chat/issues"
+    "url": "https://github.com/DaJoker29/Hermes/issues"
   },
-  "homepage": "https://github.com/DaJoker29/Daedalus-Chat"
+  "homepage": "https://github.com/DaJoker29/Hermes"
 }
