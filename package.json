@@ -1,6 +1,6 @@
 {
   "name": "Hermes",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Badass Chat Client",
   "main": "server.js",
   "dependencies": {
