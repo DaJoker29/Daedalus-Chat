@@ -21,12 +21,20 @@ console.log('Listening on port ' + PORT);
 io.sockets.on('connection', function(socket) {
     welcome = new Message("Welcome to the ZeroDae chat service.", APPNAME);
     socket.emit('message', welcome );
-    io.sockets.emit('join', {client: socket.id});
     socket.on('send', function(data) {
         message = new Message(data.content, data.user);
         io.sockets.emit('message', message);
     });
+    socket.on('join', function(data) {
+        join = new Message(data + " has joined the chat.", APPNAME);
+        io.sockets.emit('message', join);
+    });
+    socket.on('disconnect', function() {
+        leaving = new Message("Someone has left.", APPNAME);
+        io.sockets.emit('message', leaving);
+    });
 });
+
 
 
 function Message(content, user) {

@@ -36,7 +36,6 @@ $(document).ready(function () {
         } 
     });
     
-
     socket.on('message', function(data) {
         if(data.content) {
             if(data.user === 'Hermes')
@@ -82,7 +81,6 @@ $(document).ready(function () {
         else
             user = username.val();
         currentUser();
-        emitName();
     }
 
     function generateUsername() {
@@ -91,6 +89,8 @@ $(document).ready(function () {
 
     function currentUser() {
         current.html('&nbsp;(Currently: ' + user + ')');
+        socket.emit('join', user);
+        console.log(user);
     }
 
     function submit() {
