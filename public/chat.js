@@ -10,13 +10,16 @@ $(document).ready(function () {
     var username = $('#username');
     var update = $('#update');
     var id;
+
+    function User() {
+        
+    }
     
     //Hide warning
     warning.hide();
 
     //set username and display it on screen
     username.val(user);
-    emitName();
     currentUser();
 
     //event handlers
@@ -35,44 +38,29 @@ $(document).ready(function () {
     
 
     socket.on('message', function(data) {
-        if(data.message.content) {
-            $.each(data, function() {
-                if(data.message.user === 'Hermes')
-                    classes = 'message text-muted ';
-                else
-                    classes = 'message ';
-                content
-                    .append('<p></p>')
-                    .find('p:last-child')
-                    .addClass(classes + id)
-                    .append('<span></span>')
-                    .find('span:last-child')
-                    .addClass('user')
-                    .text(data.message.user + ': ')
-                    .closest('.message')
-                    .append('<span></span>')
-                    .find('span:last-child')
-                    .addClass('content')
-                    .text(data.message.content)
-            });
+        if(data.content) {
+            if(data.user === 'Hermes')
+                classes = 'message text-muted ';
+            else
+                classes = 'message ';
+            content
+                .append('<p></p>')
+                .find('p:last-child')
+                .addClass(classes + id)
+                .append('<span></span>')
+                .find('span:last-child')
+                .addClass('user')
+                .text(data.user + ': ')
+                .closest('.message')
+                .append('<span></span>')
+                .find('span:last-child')
+                .addClass('content')
+                .text(data.content)
         }
         else {
             console.log('There is a problem:', data);
         }
     });
-
-    socket.on('join', function(data) {
-        id = data.client;
-        emitName();
-    });
-
-    socket.on('change', function(data) {
-        console.log(data);
-    });
-
-    function emitName() {
-        socket.emit('add', {username: user});
-    }
 
     function getUser() {
         if(typeof(Storage) !== "undefined") {
@@ -107,7 +95,7 @@ $(document).ready(function () {
 
     function submit() {
         var text = $('#field').val();
-        socket.emit('send', { message: { content: text, user: user } });
+        socket.emit('send', { content: text, user: user });
         field.val('');
         content.animate({scrollTop: content.prop('scrollHeight')});
     }

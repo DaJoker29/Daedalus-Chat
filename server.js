@@ -1,9 +1,9 @@
 var express = require('express');
 var app = express();
-var port = 7029;
-var appName = "Hermes";
+var PORT = 7029;
+var APPNAME = "Hermes";
 
-
+//Set Views
 app.set('views', __dirname + '/templates');
 app.set('view engine', 'jade');
 app.engine('jade', require('jade').__express);
@@ -11,22 +11,25 @@ app.get('/', function(req,res) {
     res.render('page');
 });
 
-
+//Setup server
 app.use(express.static(__dirname + '/public'));
-var io = require('socket.io').listen(app.listen(port));
+var io = require('socket.io').listen(app.listen(PORT));
 io.set('transports', ['xhr-polling']);
-console.log('Listening on port ' + port);
+console.log('Listening on port ' + PORT);
 
+//Event Handlers
 io.sockets.on('connection', function(socket) {
-    socket.emit('message', { message: { content: "Welcome to the Zero Daedalus Chat service. Don't be a dick.", user: appName }});
+    welcome = new Message("Welcome to the ZeroDae chat service.", APPNAME);
+    socket.emit('message', welcome );
     io.sockets.emit('join', {client: socket.id});
     socket.on('send', function(data) {
-        io.sockets.emit('message', data);
+        message = new Message(data.content, data.user);
+        io.sockets.emit('message', message);
     });
 });
 
-var usernames = [];
-io.sockets.on('add', function(data) {
-    usernames.push(data.username);
-    io.sockets.emit('change', { users: usernames });
-});
+
+function Message(content, user) {
+    this.content = content;
+    this.user = user;
+}
