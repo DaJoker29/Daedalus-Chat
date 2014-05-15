@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    var ENTER = 13;
     var messages = [];
     var socket = io.connect('http://chat.zerodaedalus.com');
     var field = $('#field');
@@ -6,6 +7,7 @@ $(document).ready(function () {
     var content = $('#content');
     var current = $('#current');
     var warning = $('#browserWarning');
+    var error = $('#errorWarning');
     var user = getUser();
     var username = $('#username');
     var update = $('#update');
@@ -17,6 +19,7 @@ $(document).ready(function () {
     
     //Hide warning
     warning.hide();
+    error.hide();
 
     //set username and display it on screen
     username.val(user);
@@ -26,12 +29,12 @@ $(document).ready(function () {
     send.click(submit);
     update.click(setUser);
     field.keyup(function (e) {
-        if(e.which === 13) {
+        if(e.which === ENTER) {
             submit();
         } 
     });
     username.keyup(function (e) {
-        if(e.which === 13) {
+        if(e.which === ENTER) {
             setUser();
         } 
     });
@@ -58,6 +61,7 @@ $(document).ready(function () {
         }
         else {
             console.log('There is a problem:', data);
+            error.show();
         }
     });
 
