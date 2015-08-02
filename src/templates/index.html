@@ -1,11 +1,59 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Hermes</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <nav class="navbar navbar-inverse navbar-static-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Hermes</a>
+        </div>
+    </nav>
+
+    <!-- Main Window -->
+    <div class="container">
+        <form>
+            <div class="input-group">
+                <input type="text" placeholder="Nickname" class="form-control" id="nickname" aria-label="Nickname">
+                <span class="input-group-btn">
+                    <button class="btn btn-default">Change</button>
+                </span>
+            </div>
+        </form>
+        <form>
+            <div class="form-group">
+                <textarea type="text" placeholder="Message" class="form-control" id="message" aria-label="Message" rows="2"></textarea>
+            </div>
+            <p class="text-muted">Press Enter to Send</p>
+        </form>
+        <div class="panel panel-default messages">
+            <div class="panel-body">
+                <p>
+                    <span class="username">Username1</span>
+                    <span class="time">[12:34:56]</span>
+                    <span class="message">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus voluptatum nisi aut repellendus quo ipsam, beatae, quis sapiente rerum sed saepe id aliquid, alias laudantium modi nam ab magnam accusamus.</span>
+                </p>
+                <p>
+                    <span class="username">Username2</span>
+                    <span class="time">[12:34:57]</span>
+                    <span class="message">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus voluptatum nisi aut repellendus quo ipsam, beatae, quis sapiente rerum sed saepe id aliquid, alias laudantium modi nam ab magnam accusamus.</span>
+                </p>
+                <p>
+                    <span class="username">Username3</span>
+                    <span class="time">[12:34:58]</span>
+                    <span class="message">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus voluptatum nisi aut repellendus quo ipsam, beatae, quis sapiente rerum sed saepe id aliquid, alias laudantium modi nam ab magnam accusamus.</span>
+                </p>
+            </div>
+        </div>
+    </div>
     
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> -->
     <script src="script.js"></script>
 </body>
 </html>
