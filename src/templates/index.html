@@ -27,32 +27,25 @@
         <h1>Welcome, {{nickname}}</h1>
         <div class="panel panel-default messages">
             <div class="panel-body">
-                <p>
-                    <span class="username">Username1</span>
-                    <span class="time">[12:34:56]</span>
-                    <span class="message">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus voluptatum nisi aut repellendus quo ipsam, beatae, quis sapiente rerum sed saepe id aliquid, alias laudantium modi nam ab magnam accusamus.</span>
-                </p>
-                <p>
-                    <span class="username">Username2</span>
-                    <span class="time">[12:34:57]</span>
-                    <span class="message">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus voluptatum nisi aut repellendus quo ipsam, beatae, quis sapiente rerum sed saepe id aliquid, alias laudantium modi nam ab magnam accusamus.</span>
-                </p>
-                <p>
-                    <span class="username">Username3</span>
-                    <span class="time">[12:34:58]</span>
-                    <span class="message">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus voluptatum nisi aut repellendus quo ipsam, beatae, quis sapiente rerum sed saepe id aliquid, alias laudantium modi nam ab magnam accusamus.</span>
+                <p ng-repeat="message in messages">
+                    <span class="username">{{ message.nick }}</span>
+                    <span class="time">{{ message.time }}</span>
+                    <span class="message">{{ message.message }}</span>
                 </p>
             </div>
         </div>
         <div class="form-group">
-            <textarea type="text" placeholder="Message" class="form-control" id="message" aria-label="Message" rows="2"></textarea>
+            <label for="message">Type message below</label>
+            <input type="text" placeholder="Message" class="form-control" id="message" aria-label="Message" ng-model="messageText" ng-keypress="($event.which === 13) ? addMessage() : 0"></textarea>
             <p class="text-muted">Press Enter to Send</p>
         </div>
     </div>
     
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.6/ngStorage.min.js"></script>
+    <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
+    <script src="https://cdn.firebase.com/libs/angularfire/1.1.2/angularfire.min.js"></script>
     <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> -->
     <script src="script.js"></script>
 </body>
