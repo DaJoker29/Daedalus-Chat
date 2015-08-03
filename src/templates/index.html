@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
-<body ng-controller="Ctrl">
+<body>
     <nav class="navbar navbar-inverse navbar-static-top">
         <div class="container">
             <a class="navbar-brand" href="#">Hermes</a>
@@ -20,32 +20,33 @@
 
     <!-- Main Window -->
     <div class="container">
-        <div class="form-group">
+        <div class="form-group" ng-controller="UserCtrl as userCtrl">
             <label for="nickname">Change Nickname</label>
-            <input type="text" placeholder="Nickname" class="form-control" id="nickname" aria-label="Nickname" ng-model="nickname" ng-change="$storage.HermesName = nickname">
+            <input type="text" placeholder="Nickname" class="form-control" id="nickname" aria-label="Nickname" ng-model="$root.nickname" ng-change="$storage.HermesName = nickname">
+            <h3>Welcome, {{ $root.nickname }}</h3>
         </div>
-        <h1>Welcome, {{nickname}}</h1>
-        <div class="panel panel-default messages">
-            <div class="panel-body">
-                <p ng-repeat="message in messages">
-                    <span class="username">{{ message.nick }}</span>
-                    <span class="time">{{ message.time }}</span>
-                    <span class="message">{{ message.message }}</span>
-                </p>
+        <section ng-controller="MessageCtrl as messageCtrl">
+            <div class="panel panel-default messages">
+                <div class="panel-body">
+                    <p ng-repeat="message in messages">
+                        <span class="username">{{ message.nick }}</span>
+                        <span class="message">{{ message.message }}</span>
+                    </p>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="message">Type message below</label>
-            <input type="text" placeholder="Message" class="form-control" id="message" aria-label="Message" ng-model="messageText" ng-keypress="($event.which === 13) ? addMessage() : 0"></textarea>
-            <p class="text-muted">Press Enter to Send</p>
-        </div>
+            <div class="form-group">
+                <label for="message">Type message below</label>
+                <input type="text" placeholder="Message" class="form-control" id="message" aria-label="Message" ng-model="messageText" ng-keypress="($event.which === 13) ? addMessage() : 0"></textarea>
+                <p class="text-muted">Press Enter to Send</p>
+            </div>
+        </section>
     </div>
     
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.6/ngStorage.min.js"></script>
     <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
     <script src="https://cdn.firebase.com/libs/angularfire/1.1.2/angularfire.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> -->
     <script src="script.js"></script>
 </body>
