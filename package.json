@@ -1,30 +1,29 @@
 {
-  "name": "Hermes",
-  "version": "0.1.1",
-  "description": "Badass Chat Client",
-  "main": "server.js",
-  "dependencies": {
-    "express": "~4.1.1",
-    "jade": "~1.3.1",
-    "socket.io": "~0.9.16"
+  "license": "GPLv2",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "autoprefixer-core": "^5.2.0",
+    "grunt-postcss": "^0.5.1",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-copy": "^0.7.0",
+    "grunt-contrib-jshint": "^0.11.0",
+    "grunt-contrib-sass": "^0.8.1",
+    "grunt-contrib-uglify": "^0.7.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "load-grunt-tasks": "3.2.0"
   },
-  "devDependencies": {},
+  "name": "Hermes",
+  "description": "Chat Service using Firebase",
+  "version": "1.0.0-0",
+  "main": "Gruntfile.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/DaJoker29/Hermes.git"
+    "url": "https://github.com/DaJoker29/Hermes.git"
   },
-  "keywords": [
-    "node",
-    "chat",
-    "express",
-    "socketsio"
-  ],
-  "author": "The Captain",
-  "license": "GPLv2",
+  "author": "Dewitt A. Buckingham, III <captain@zerodaedalus.net> (http://zerodaedalus.com/)",
   "bugs": {
     "url": "https://github.com/DaJoker29/Hermes/issues"
   },
