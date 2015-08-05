@@ -20,10 +20,8 @@
 
     <!-- Main Window -->
     <div class="container">
-        <div class="form-group" ng-controller="UserCtrl as userCtrl">
-            <label for="nickname">Change Nickname</label>
-            <input type="text" placeholder="Nickname" class="form-control" id="nickname" aria-label="Nickname" ng-model="$root.nickname" ng-change="$storage.HermesName = nickname">
-            <h3>Welcome, {{ $root.nickname }}</h3>
+        <div class="form-group">
+            <button id="fbLogin" class="btn btn-primary" type="button">Sign in with Google</a>
         </div>
         <section ng-controller="MessageCtrl as messageCtrl">
             <div class="panel panel-default messages">
