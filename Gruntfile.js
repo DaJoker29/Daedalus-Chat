@@ -94,12 +94,12 @@ module.exports = function(grunt) {
                     compress: false
                 },
                 files: {
-                    'dist/script.js': ['src/js/**/*.js']
+                    'dist/script.js': ['src/js/**/*.js-annotated']
                 }
             },
             prod: {
                 files: {
-                    'dist/script.js': ['src/js/**/*.js']
+                    'dist/script.js': ['src/js/**/*.js-annotated']
                 }
             }
         },
@@ -122,10 +122,17 @@ module.exports = function(grunt) {
                 dest: 'dist/vendor',
                 expand: true
             }
+        },
+        ngAnnotate: {
+            files: {
+                expand: true,
+                src: ['src/js/**/*.js'],
+                rename: function( dest, src ) { return src + '-annotated' }
+            }
         }
     });
 
-    grunt.registerTask('dev', 'Build development version of project', ['clean', 'copy', 'jshint', 'uglify:dev', 'sass:dev', 'postcss:dev']);
-    grunt.registerTask('prod', 'Build production version of project', ['clean', 'copy', 'jshint', 'uglify:prod', 'sass:prod', 'postcss:prod']);
+    grunt.registerTask('dev', 'Build development version of project', ['clean', 'copy', 'jshint', 'ngAnnotate', 'uglify:dev', 'sass:dev', 'postcss:dev']);
+    grunt.registerTask('prod', 'Build production version of project', ['clean', 'copy', 'jshint', 'ngAnnotate', 'uglify:prod', 'sass:prod', 'postcss:prod']);
     grunt.registerTask('default', 'Build development version and run watch server', ['dev', 'watch']);
 };
