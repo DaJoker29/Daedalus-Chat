@@ -15,7 +15,7 @@
   },
   "name": "Hermes",
   "description": "Chat Service using Firebase",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "main": "Gruntfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
