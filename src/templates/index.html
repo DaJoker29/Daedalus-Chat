@@ -24,21 +24,22 @@
             <button id="google" class="btn btn-primary" type="button">Sign in with Google</button>
         </div>
         <section id="messages" ng-controller="MessageCtrl as messageCtrl">
-            <div id="authenticated hide">
-                <p id="loggedIn">Logged in as {{ nick }}. 
-                    <a id="logout">Log Out</a>
+            <div id="authenticated" class="hide">
+                <p id="loggedIn">Logged in via {{ provider | capitalize }}. 
+                    <a href="#" id="logout" class="pull-right">Log Out</a>
                 </p>
             </div>
             <div class="panel panel-default messages">
                 <div class="panel-body">
                     <p ng-repeat="message in messages">
+                        <img class="avatar" ng-src="{{ message.url }}" alt="{{ message.nick }}'s profile picture">
                         <span class="username">{{ message.nick }}</span>
                         <span class="message">{{ message.message }}</span>
                     </p>
                 </div>
             </div>
             <div class="form-group">
-                <label for="message">Type message below</label>
+                <label for="message">Type message as {{ nick }}</label>
                 <input type="text" placeholder="Message" class="form-control" id="message" aria-label="Message" ng-model="messageText" ng-keypress="($event.which === 13) ? addMessage() : 0"></textarea>
                 <p class="text-muted">Press Enter to Send</p>
             </div>
