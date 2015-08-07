@@ -20,10 +20,15 @@
 
     <!-- Main Window -->
     <div class="container">
-        <div class="form-group">
-            <button id="fbLogin" class="btn btn-primary" type="button">Sign in with Google</a>
+        <div id="unauthenticated" class="form-group">
+            <button id="google" class="btn btn-primary" type="button">Sign in with Google</button>
         </div>
-        <section ng-controller="MessageCtrl as messageCtrl">
+        <section id="messages" ng-controller="MessageCtrl as messageCtrl">
+            <div id="authenticated hide">
+                <p id="loggedIn">Logged in as {{ nick }}. 
+                    <a id="logout">Log Out</a>
+                </p>
+            </div>
             <div class="panel panel-default messages">
                 <div class="panel-body">
                     <p ng-repeat="message in messages">
