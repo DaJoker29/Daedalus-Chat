@@ -9,7 +9,7 @@ module.exports = function(grunt) {
             },
             js: {
                 files: ['src/js/**/*.js'],
-                tasks: ['jshint', 'uglify:dev']
+                tasks: ['jshint', 'ngAnnotate', 'uglify:dev']
             },
             templates: {
                 files: ['src/templates/**/*.*'],
@@ -94,12 +94,12 @@ module.exports = function(grunt) {
                     compress: false
                 },
                 files: {
-                    'dist/script.js': ['src/js/**/*.js-annotated']
+                    'dist/script.js': ['src/js/**/*.js']
                 }
             },
             prod: {
                 files: {
-                    'dist/script.js': ['src/js/**/*.js-annotated']
+                    'dist/script.js': ['src/js/**/*.js']
                 }
             }
         },
@@ -124,10 +124,12 @@ module.exports = function(grunt) {
             }
         },
         ngAnnotate: {
+            options: {
+                singleQuotes: true
+            },
             files: {
                 expand: true,
-                src: ['src/js/**/*.js'],
-                rename: function( dest, src ) { return src + '-annotated' }
+                src: ['src/js/hermes.js'],
             }
         }
     });
