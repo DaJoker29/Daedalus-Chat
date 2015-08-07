@@ -9,41 +9,35 @@ $(function() {
 
     var setName = function ( authData ) {
         scope.$apply(function() {
-            if(!authData) {
-                scope.nick = 'Guest ' + Math.floor((Math.random() * 10000) + 1);
-            } else if(authData.google) {
-                scope.nick = authData.google.displayName;
-            }
+             scope.nick = (authData) ? authData[authData.provider].displayName : 'Guest ' + Math.floor((Math.random() * 10000) + 1);
         });
     };
 
     var setURL = function ( authData ) {
         scope.$apply(function() {
-            if(!authData) {
-                scope.url = 'http://placehold.it/100x100';
-            } else if (authData.google) {
-                scope.url = authData.google.profileImageURL;
-            }
+            scope.url = (authData) ? authData[authData.provider].profileImageURL : 'http://placehold.it/100x100';
         });
     };
     var setProvider = function ( authData ) {
         scope.$apply(function() {
-            if(!authData) {
-                scope.provider = null;
-            } else if (authData.google) {
-                scope.provider = authData.provider;
-            }
+            scope.provider = (authData) ? authData.provider : null;
         });
     };
 
+    var authCallback = function ( error, authData ) {
+        if(error) {
+            console.log('Login Failed.', error);
+        } else {
+            console.log('Successful Authentication:', authData);
+        }
+    };
+
     $('#google').click(function() {
-        ref.authWithOAuthPopup('google', function (error, authData) {
-            if(error) {
-                console.log('Login Failed.', error);
-            } else {
-                console.log('Successful Authentication:', authData);
-            }
-        });
+        ref.authWithOAuthPopup('google', authCallback);
+    });
+
+    $('#twitter').click(function() {
+        ref.authWithOAuthPopup('twitter', authCallback);
     });
 
     $('#logout').click(function() {
