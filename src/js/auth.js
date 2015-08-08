@@ -7,43 +7,36 @@ $(function() {
     var ref = new Firebase('https://glaring-torch-2044.firebaseio.com');
     var scope = angular.element($('#messages')).scope();
 
-    var setName = function ( authData ) {
-        scope.$apply(function() {
-            if(!authData) {
+    var setContext = function ( authData ) {
+        if( authData ) {
+            scope.$apply(function() {
+                scope.nick = authData[authData.provider].displayName;
+                scope.url = authData[authData.provider].profileImageURL;
+                scope.provider = authData.provider;
+            });                        
+        }  else {
+            scope.$apply(function() {
                 scope.nick = 'Guest ' + Math.floor((Math.random() * 10000) + 1);
-            } else if(authData.google) {
-                scope.nick = authData.google.displayName;
-            }
-        });
+                scope.url = 'http://placehold.it/100x100';
+                scope.provider = null;
+            });
+        }
     };
 
-    var setURL = function ( authData ) {
-        scope.$apply(function() {
-            if(!authData) {
-                scope.url = 'http://placehold.it/100x100';
-            } else if (authData.google) {
-                scope.url = authData.google.profileImageURL;
-            }
-        });
-    };
-    var setProvider = function ( authData ) {
-        scope.$apply(function() {
-            if(!authData) {
-                scope.provider = null;
-            } else if (authData.google) {
-                scope.provider = authData.provider;
-            }
-        });
+    var authCallback = function ( error, authData ) {
+        if(error) {
+            console.log('Login Failed.', error);
+        } else {
+            console.log('Successful Authentication:', authData);
+        }
     };
 
     $('#google').click(function() {
-        ref.authWithOAuthPopup('google', function (error, authData) {
-            if(error) {
-                console.log('Login Failed.', error);
-            } else {
-                console.log('Successful Authentication:', authData);
-            }
-        });
+        ref.authWithOAuthPopup('google', authCallback);
+    });
+
+    $('#twitter').click(function() {
+        ref.authWithOAuthPopup('twitter', authCallback);
     });
 
     $('#logout').click(function() {
@@ -51,18 +44,6 @@ $(function() {
     });
 
     ref.onAuth(function() {
-        var authData = ref.getAuth();
-        setName( authData );
-        setURL( authData );
-        setProvider ( authData );
-
-        if (authData) {
-            console.log(authData.uid + ' is logged in with ' + authData.provider);
-            $('#unauthenticated').hide();
-            $('#authenticated').removeClass('hide');
-        } else {
-            $('#unauthenticated').show();
-            $('#authenticated').addClass('hide');
-        }
+        setContext( ref.getAuth() );
     });
 });
