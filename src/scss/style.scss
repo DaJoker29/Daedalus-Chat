@@ -1,5 +1,4 @@
 .time {
-    // float: left;
     font-size: .75em;
     color: #777;
 }
@@ -20,6 +19,7 @@
 
 .avatar {
     height: 2em;
+    width: 2em;
     float: left;
     margin: .4em;
 }
@@ -27,4 +27,8 @@
 #provider {
     font-weight: bold;
     font-style: italic;
+}
+
+#logout {
+    font-weight: bold;
 }

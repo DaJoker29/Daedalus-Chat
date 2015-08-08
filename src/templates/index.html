@@ -24,6 +24,8 @@
             <div id="unauthenticated" class="form-group" ng-show="!provider">
                 <button id="google" class="btn btn-danger" type="button">Sign in with Google</button>
                 <button id="twitter" class="btn btn-info" type="button">Sign in with Twitter</button>
+                <button id="github" class="btn btn-default" type="button">Sign in with GitHub</button>
+                <button id="facebook" class="btn btn-primary" type="button">Sign in with Facebook</button>
             </div>
             <div id="authenticated" ng-show="provider">
                 <p id="loggedIn">Logged in via <span id="provider" ng-bind="provider | capitalize"></span>

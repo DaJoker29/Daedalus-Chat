@@ -39,6 +39,14 @@ $(function() {
         ref.authWithOAuthPopup('twitter', authCallback);
     });
 
+    $('#github').click(function() {
+        ref.authWithOAuthPopup('github', authCallback);
+    });
+
+    $('#facebook').click(function() {
+        ref.authWithOAuthPopup('facebook', authCallback);
+    });
+
     $('#logout').click(function() {
         ref.unauth();
     });
